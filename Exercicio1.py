@@ -68,6 +68,9 @@ sales.plot(kind='scatter', x='Customer_Age', y='Revenue', figsize=(6, 6))
 
 sales.plot(kind='scatter', x='Revenue', y='Profit', figsize=(6, 6))
 
+ax = sales[['Profit', 'Age_Group']].boxplot(by='Age_Group', figsize=(10, 6))
+ax.set_ylabel('Profit')
+
 sales['Revenue'] += 50
 var = sales.loc[(sales['Country'] == 'Canada') | (sales['Country'] == 'France')].shape[0]
 var = sales.loc[(sales['Country'] == 'Canada') & (sales['Sub_Category'] == 'Bike Racks')].shape[0]
