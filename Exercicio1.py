@@ -2,8 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-#%matplotlib inline
-
 sales = pd.read_csv(
     'data/sales_data.csv',
     parse_dates=['Date'])
@@ -34,31 +32,31 @@ sales['Calculated_Date'] = pd.to_datetime(sales['Calculated_Date'])
 sales['Calculated_Date'].head()
 sales['Calculated_Date'].value_counts().plot(kind='line', figsize=(14, 6))
 sales['Revenue'] += 50
-sales.loc[(sales['Country'] == 'Canada') | (sales['Country'] == 'France')].shape[0]
-sales.loc[(sales['Country'] == 'Canada') & (sales['Sub_Category'] == 'Bike Racks')].shape[0]
+# sales.loc[(sales['Country'] == 'Canada') | (sales['Country'] == 'France')].shape[0]
+# sales.loc[(sales['Country'] == 'Canada') & (sales['Sub_Category'] == 'Bike Racks')].shape[0]
 france_states = sales.loc[sales['Country'] == 'France', 'State'].value_counts()
 
-france_states
+
 france_states.plot(kind='bar', figsize=(14, 6))
 sales['Product_Category'].value_counts()
 sales['Product_Category'].value_counts().plot(kind='pie', figsize=(6, 6))
 accessories = sales.loc[sales['Product_Category'] == 'Accessories', 'Sub_Category'].value_counts()
 
-accessories
+
 accessories.plot(kind='bar', figsize=(14, 6))
 bikes = sales.loc[sales['Product_Category'] == 'Bikes', 'Sub_Category'].value_counts()
 
-bikes
+
 bikes.plot(kind='pie', figsize=(6, 6))
 sales['Customer_Gender'].value_counts()
 sales['Customer_Gender'].value_counts().plot(kind='bar')
-sales.loc[(sales['Customer_Gender'] == 'M') & (sales['Revenue'] == 500)].shape[0]
+# sales.loc[(sales['Customer_Gender'] == 'M') & (sales['Revenue'] == 500)].shape[0]
 
 sales.sort_values(['Revenue'], ascending=False).head(5)
 cond = sales['Revenue'] == sales['Revenue'].max()
 
-sales.loc[cond]
-cond = sales['Revenue'] > 10_000
+# sales.loc[cond]
+# cond = sales['Revenue'] > 10_000
 
 sales.loc[cond, 'Order_Quantity'].mean()
 cond = sales['Revenue'] < 10_000
@@ -66,10 +64,10 @@ cond = sales['Revenue'] < 10_000
 sales.loc[cond, 'Order_Quantity'].mean()
 cond = (sales['Year'] == 2016) & (sales['Month'] == 'May')
 
-sales.loc[cond].shape[0]
-cond = (sales['Year'] == 2016) & (sales['Month'].isin(['May', 'June', 'July']))
+# sales.loc[cond].shape[0]
+# cond = (sales['Year'] == 2016) & (sales['Month'].isin(['May', 'June', 'July']))
 
-sales.loc[cond].shape[0]
+# sales.loc[cond].shape[0]
 profit_2016 = sales.loc[sales['Year'] == 2016, ['Profit', 'Month']]
 
 profit_2016.boxplot(by='Month', figsize=(14, 6))
