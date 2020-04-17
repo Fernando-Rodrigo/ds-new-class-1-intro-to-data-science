@@ -8,10 +8,10 @@ sales = pd.read_csv(
 
 sales.head()
 sales['Customer_Age'].mean()
-# sales['Customer_Age'].plot(kind='kde', figsize=(14, 6))
+sales['Customer_Age'].plot(kind='bar', figsize=(14, 6))
 sales['Customer_Age'].plot(kind='box', vert=False, figsize=(14, 6))
 sales['Year'].value_counts()
-# sales['Year'].value_counts().plot(kind='pie', figsize=(6, 6))
+sales['Year'].value_counts().plot(kind='bar', figsize=(6, 6))
 sales['Month'].value_counts()
 sales['Month'].value_counts().plot(kind='bar', figsize=(14, 6))
 sales['Country'].value_counts().head(1)
