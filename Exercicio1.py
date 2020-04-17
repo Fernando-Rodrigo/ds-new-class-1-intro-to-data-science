@@ -76,16 +76,27 @@ var = sales.loc[(sales['Country'] == 'Canada') | (sales['Country'] == 'France')]
 var = sales.loc[(sales['Country'] == 'Canada') & (sales['Sub_Category'] == 'Bike Racks')].shape[0]
 france_states = sales.loc[sales['Country'] == 'France', 'State'].value_counts()
 
+sales['Revenue_per_Age'] = sales['Revenue'] / sales['Customer_Age']
+
+sales['Revenue_per_Age'].head()
+
+# sales['Revenue_per_Age'].plot(kind='density', figsize=(14, 6))
 
 france_states.plot(kind='bar', figsize=(14, 6))
 sales['Product_Category'].value_counts()
 sales['Product_Category'].value_counts().plot(kind='pie', figsize=(6, 6))
 accessories = sales.loc[sales['Product_Category'] == 'Accessories', 'Sub_Category'].value_counts()
 
+sales['Calculated_Cost'] = sales['Order_Quantity'] * sales['Unit_Cost']
+
+sales['Calculated_Cost'].head()
+
+(sales['Calculated_Cost'] != sales['Cost']).sum()
 
 accessories.plot(kind='bar', figsize=(14, 6))
 bikes = sales.loc[sales['Product_Category'] == 'Bikes', 'Sub_Category'].value_counts()
 
+sales.plot(kind='scatter', x='Calculated_Cost', y='Profit', figsize=(6, 6))
 
 bikes.plot(kind='pie', figsize=(6, 6))
 sales['Customer_Gender'].value_counts()
@@ -112,3 +123,9 @@ profit_2016 = sales.loc[sales['Year'] == 2016, ['Profit', 'Month']]
 
 profit_2016.boxplot(by='Month', figsize=(14, 6))
 sales.loc[sales['Country'] == 'United States', 'Unit_Price'] *= 1.072
+
+sales['Revenue'].plot(kind='hist', bins=100, figsize=(14, 6))
+
+sales['Unit_Price'].head()
+sales['Unit_Price'] *= 1.03
+sales['Unit_Price'].head()
